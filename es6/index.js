@@ -105,4 +105,25 @@ function processCoords([x, y, z]) {
 processCoords([0, 10, 20]);
 
 
+// Modules
+// file1:
+import {projectId as id, name} from 'file2';
+// id and name can be accessed
+
+// file2:
+export let projectId = 3;
+export let name = 'mate';
+
+
+// file1:
+import {someValue} from 'file2';
+// OR
+import {default as someValue} from 'file2';
+// someValue picks up the default export
+
+// file2:
+export default projectId = 3;
+// OR
+let projectId = 3;
+export {projectId as default};
 

@@ -96,3 +96,53 @@ class Cat extends Animal {
 }
 
 var fluffy = new Cat('Fluggy', 'white');
+
+
+// Override inherited method
+class Animal {
+	constructor(voice) {
+		this.voice = voice || 'grunt';
+	}
+
+	speak() {
+		console.log(this.voice);
+	}
+}
+
+class Cat extends Animal {
+	constructor(name, color){
+		super('Meow');
+		this.name = name;
+		this.color = color;
+	}
+
+	speak() {
+		return super.speak() + ', says the cat.';
+	}
+}
+
+var fluffy = new Cat('Fluggy', 'white');
+
+
+// All this can be done with objects
+let project = {
+	getTaskCount() {return 50; }
+};
+
+let softwareProject = {
+	getTaskCount() {
+		return super.getTaskCount() = 7;
+	}
+}
+
+Object.setPrototypeOf(softwareProject, project);
+
+
+// Static props, only accessible from inside the class (proivate method)
+class Project {
+	static privateMethod() {
+		return 0;
+	}
+}
+// can't have variables inside, has to be outside, this will become static:
+Project.id = 99;
