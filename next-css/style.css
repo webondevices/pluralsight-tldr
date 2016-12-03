@@ -1,0 +1,142 @@
+/* CUSTOM PROPERTIES - VARIABLES */
+:root {
+  --mainColor: red;
+}
+
+a {
+  color: var(--mainColor);
+}
+
+
+/* CUSTOM PROPERTY BLOCKS */
+:root {
+  --danger-theme: {
+    color: white;
+    background-color: red;
+  };
+}
+
+.danger {
+  @apply --danger-theme;
+}
+
+ 
+/* REDUCE CALC */
+:root {
+  --fontSize: 1rem;
+}
+
+h1 {
+  font-size: calc(var(--fontSize) * 2);
+}
+
+
+/* CUSTOM MEDIA QUERIES */
+@custom-media --small-viewport (max-width: 30em);
+
+@media (--small-viewport) {}
+
+
+/* MEDIA QUERIES RANGES (<= & >=) */
+@media (width >= 500px) and (width <= 1200px) {}
+
+@custom-media --only-medium-screen (width >= 500px) and (width <= 1200px);
+
+@media (--only-medium-screen) {}
+
+
+/* CUSTOM SELECTORS */
+@custom-selector: --button button, .button;
+@custom-selector: --enter :hover, :focus;
+
+:--button {}
+:--button:--enter {}
+
+
+/* NESTING */
+a {
+  /* direct nesting (& MUST be the first part of selector)*/
+  & span {
+    color: white;
+  }
+
+  /* @nest rule (for complex nesting) */
+  @nest span & {
+    color: blue;
+  }
+
+  /* media query automatic nesting */
+  @media (min-width: 30em) {
+    color: yellow;
+  }
+}
+
+
+/* COLOR */
+{
+  color: color(red);
+  color: color(red tint(50%));
+  color: color(hsla(125, 50%, 50%, .4) hue(200));
+  color: color(hwb(270, 10%, 0%) contrast(50%));
+  color: hover-color(red);
+  color: hover-color(color(red tint(50%)));
+  color: color(#999 a(0.8)) color(#999 a(0.8));
+}
+
+/* HWB */
+{ 
+  color: hwb(90, 0%, 0%, 0.5);
+}
+
+
+/* GRAY */
+{
+  /* 0 - 255 */
+  color: gray(85);
+
+  /* color, alpha */
+  color: gray(10%, 50%);
+}
+
+
+/* #RRGGBBAA */
+{
+  color: #99dd99cc;
+  color: #9d9c;
+}
+
+
+/* FILTER (adds SVG fallback) */
+{
+  filter: blur(4px);
+}
+
+
+/* INITAL VALUE (for all properties) */
+{
+  display: initial;
+  all: initial;
+}
+
+
+/* :ANY-LINK (converts to :link, :visited) */
+nav:any-link {}
+
+
+/* :MATCHES */
+p:matches(:first-child, .special) {}
+
+
+/* :NOT (allows multiple) */
+p:not(:first-child, .special) {}
+
+
+/* CASE INDEPENDENT ATTR SELECTOR */
+[frame=hsides i] {}
+
+
+/* COLOR FUNC NOTATION (r g b / a) */
+{
+  color: rgb(100 222.2 100.9 / 30%);
+  color: hsl(300grad 25% 15% / 70%);
+}
