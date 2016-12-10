@@ -57,6 +57,18 @@ let myObj = {
 	[propName + '1']: 'hello'
 }
 
+// Getters and setters
+let myObj = {
+	myName: 'Mate',
+	age: 0,
+	get fullName() {
+		return this.myName + ' Marschalko';
+	},
+	set age(age) {
+		this.age = age;
+	}
+}
+
 
 // for ... of
 let items = [1, 2, 3];
@@ -126,4 +138,39 @@ export default projectId = 3;
 // OR
 let projectId = 3;
 export {projectId as default};
+
+
+// Extensions
+// Add prototypal inheritance in objects (take aObj and set it's prototype to bObj)
+Object.setPrototypeOf(aObj, bObj);
+
+// Add all properties from aObj and bObj to newObj (bObj overwrites properties from aObj)
+// It will only take the objects and won't look at objects in prototype
+Object.assign(newObj, aObj, bObj);
+
+// String extensions
+let myName = 'Mate Marschalko';
+
+myName.startsWith('');
+myName.endsWith('');
+myName.includes('');
+myName.repeat(5);
+
+// Number extensions
+Number.parseInt()
+Number.parseFloat()
+Number.isNaN()
+Number.isIntiger()
+
+// Math extensions
+// 1, -1, 0, -0, NaN
+Math.sign()
+// The intiger part of a number
+Math.trunc()
+
+// Function extensions
+myFn.name
+
+
+
 
