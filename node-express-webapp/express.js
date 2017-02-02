@@ -45,9 +45,20 @@ bookRouter.route('/')
 
 // Route with ID parameter
 bookRouter.route('/:id')
+
+	// Middleware for all routes
+	.all(function(req, res, next){
+
+		// Modify data or handle error
+		res.status(404).send('Error with data');
+
+		// OR if all is good
+		req.mYdata = dataFetched;
+		next();
+	})
 	.get(function(req, res){
 		var id = req.params.id;
-		res.send('Hello Book No: ' + id);
+		res.send('Hello Book No: ' + id + ' data: ' + req.myData);
 	});
 
 app.use('/books', bookRouter);
