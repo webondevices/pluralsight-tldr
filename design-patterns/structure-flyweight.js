@@ -40,20 +40,20 @@ let BookFactory = (function(){
     return {
         createBook: function(title, author, genre, pageCount, publisherID, ISBN) {
 
-	        // Find out if a particular book meta-data combination has been created before
-			let existingBook = existingBooks[ISBN];
+            // Find out if a particular book meta-data combination has been created before
+            let existingBook = existingBooks[ISBN];
 
-			if (existingBook) {
-				return existingBook;
-			} else {
+            if (existingBook) {
+                return existingBook;
+            } else {
 
-				// If not, let's create a new instance of it and store it
-				let book = new Book(title, author, genre, pageCount, publisherID, ISBN);
-				existingBooks[ISBN] = book;
-				return book;
-			}
-		}
-	}   
+                // If not, let's create a new instance of it and store it
+                let book = new Book(title, author, genre, pageCount, publisherID, ISBN);
+                existingBooks[ISBN] = book;
+                return book;
+            }
+        }
+    }   
 })();
 
 // Manage extra data with Record Manager
@@ -77,23 +77,23 @@ let BookRecordManager = (function() {
             };
         },
 
-     	updateCheckoutStatus: function(bookID, newStatus, checkoutDate, checkoutMember, newReturnDate) {
+        updateCheckoutStatus: function(bookID, newStatus, checkoutDate, checkoutMember, newReturnDate) {
 
-			let record = bookRecordDatabase[bookID];
-			record.availability = newStatus;
-			record.checkoutDate = checkoutDate;
-			record.checkoutMember = checkoutMember;
-			record.dueReturnDate = newReturnDate;
-    	},
+            let record = bookRecordDatabase[bookID];
+            record.availability = newStatus;
+            record.checkoutDate = checkoutDate;
+            record.checkoutMember = checkoutMember;
+            record.dueReturnDate = newReturnDate;
+        },
 
-	    extendCheckoutPeriod: function(bookID, newReturnDate) {
-	        bookRecordDatabase[bookID].dueReturnDate = newReturnDate;
-	    },
+        extendCheckoutPeriod: function(bookID, newReturnDate) {
+            bookRecordDatabase[bookID].dueReturnDate = newReturnDate;
+        },
 
-		isPastDue: function(bookID) {
+        isPastDue: function(bookID) {
 
-			let currentDate = new Date();
-			return currentDate.getTime() > Date.parse(bookRecordDatabase[bookID].dueReturnDate);   
-		}
-	};
+            let currentDate = new Date();
+            return currentDate.getTime() > Date.parse(bookRecordDatabase[bookID].dueReturnDate);   
+        }
+    };
 })();

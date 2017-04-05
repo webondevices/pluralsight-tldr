@@ -6,29 +6,29 @@
 // Hands the same instance back
 
 const TaskRepo = (function() {
-	let TaskRepo;
+    let TaskRepo;
 
-	function createRepo() {
-		let taskRepo = new Object("Task");
-		return taskRepop
-	}
+    function createRepo() {
+        let taskRepo = new Object("Task");
+        return taskRepop
+    }
 
-	return {
-		getInstance: function() {
-			if (!taskRepo) {
-				taskRepo = createRepo();
-			}
+    return {
+        getInstance: function() {
+            if (!taskRepo) {
+                taskRepo = createRepo();
+            }
 
-			return taskRepo;
-		}
-	}
+            return taskRepo;
+        }
+    }
 })();
 
 let repo1 = TaskRepo.getInstance();
 let repo2 = TaskRepo.getInstance();
 
 if (repo1 === repo2) {
-	console.log("Same instance!");
+    console.log("Same instance!");
 }
 
 
